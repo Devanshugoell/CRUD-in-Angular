@@ -5,25 +5,52 @@
       placeholder="Enter new Task"
       class="border border-black p-2 m-2 mt-5 rounded-md shadow-lg"
     />
+
+    @if(editingIndex !== null) {
+    <button
+      class="bg-yellow-500 p-2 m-2 rounded-md text-white shadow-lg"
+      (click)="saveEdit(editingIndex)"
+    >
+      Update Task
+    </button>
+    <button
+      class="bg-gray-500 p-2 m-2 rounded-md text-white shadow-lg"
+      (click)="cancelEdit()"
+    >
+      Cancel
+    </button>
+    } @else {
     <button
       class="bg-green-500 p-2 m-2 rounded-md text-white shadow-lg"
       (click)="addTask($event)"
     >
-      Add Button
+      Add Task
     </button>
+    }
   </div>
 
   <ul class="flex gap-4 flex-col items-center justify-center mt-5">
-    @for(todo of todoList; track $index; let i = $index) {
+    @for (todo of todoList; track $index; let i = $index) {
     <div
-      class="flex rounded-lg gap-4 items-center justify-around min-w-[30rem] bg-slate-600"
+      class="flex rounded-lg gap-4 items-center justify-around min-w-[30rem] bg-slate-600 p-4"
     >
-      <input type="checkbox" name="checkbox" (change)="handleComplete(i)" />
-      @if(todo.completed) {
-      <li class="line-through">{{ todo.task }}</li>
-      } @else {
-      <li class="text-white text-3xl">{{ todo.task | titlecase }}</li>
-      }
+      <input
+        type="checkbox"
+        name="checkbox"
+        (change)="handleComplete(i)"
+        [checked]="todo.completed"
+      />
+
+      <li [class.line-through]="todo.completed" class="text-white text-3xl">
+        {{ todo.task | titlecase }}
+      </li>
+
+      <button
+        class="p-2 m-2 bg-blue-500 rounded-lg text-white shadow-lg px-6"
+        (click)="handleEdit(i)"
+      >
+        Edit
+      </button>
 
       <button
         class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg px-6"

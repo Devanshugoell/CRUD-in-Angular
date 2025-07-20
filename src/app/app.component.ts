@@ -7,6 +7,7 @@ export interface TodoList {
   task: string;
   completed: boolean;
 }
+
 @Component({
   selector: "app-root",
   standalone: true,
@@ -15,15 +16,10 @@ export interface TodoList {
   styleUrl: "./app.component.css",
 })
 export class AppComponent {
-  todoList: TodoList[] = [
-    {
-      id: 2,
-      task: "Abd",
-      completed: false,
-    },
-  ];
+  todoList: TodoList[] = [];
 
   newTask: string = "";
+  editingIndex: number | null = null;
 
   addTask(event: Event): void {
     if (this.newTask.trim() !== "") {
@@ -32,10 +28,27 @@ export class AppComponent {
         task: this.newTask,
         completed: false,
       };
-
       this.todoList.push(newTodoItem);
       this.newTask = "";
     }
+  }
+
+  handleEdit(index: number): void {
+    this.editingIndex = index;
+    this.newTask = this.todoList[index].task;
+  }
+
+  saveEdit(index: number): void {
+    if (this.newTask.trim() !== "") {
+      this.todoList[index].task = this.newTask;
+      this.editingIndex = null;
+      this.newTask = "";
+    }
+  }
+
+  cancelEdit(): void {
+    this.editingIndex = null;
+    this.newTask = "";
   }
 
   handleComplete(index: number): void {
@@ -43,8 +56,6 @@ export class AppComponent {
   }
 
   handleDelete(index: number): void {
-    this.todoList = this.todoList.filter(
-      (todo) => todo.id !== this.todoList[index].id
-    );
+    this.todoList = this.todoList.filter((_, i) => i !== index);
   }
 }
