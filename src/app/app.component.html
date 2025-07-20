@@ -15,15 +15,20 @@
 
   <ul class="flex gap-4 flex-col items-center justify-center mt-5">
     @for(todo of todoList; track $index; let i = $index) {
-    <div class="flex gap-4 items-center justify-between">
+    <div
+      class="flex rounded-lg gap-4 items-center justify-around min-w-[30rem] bg-slate-600"
+    >
       <input type="checkbox" name="checkbox" (change)="handleComplete(i)" />
       @if(todo.completed) {
       <li class="line-through">{{ todo.task }}</li>
       } @else {
-      <li>{{ todo.task }}</li>
+      <li class="text-white text-3xl">{{ todo.task | titlecase }}</li>
       }
 
-      <button class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg">
+      <button
+        class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg px-6"
+        (click)="handleDelete(i)"
+      >
         Delete
       </button>
     </div>
