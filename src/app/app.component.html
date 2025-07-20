@@ -1,1 +1,32 @@
-<h1 class="text-">This is heading</h1>
+<section>
+  <div class="container text-center">
+    <input
+      [(ngModel)]="newTask"
+      placeholder="Enter new Task"
+      class="border border-black p-2 m-2 mt-5 rounded-md shadow-lg"
+    />
+    <button
+      class="bg-green-500 p-2 m-2 rounded-md text-white shadow-lg"
+      (click)="addTask($event)"
+    >
+      Add Button
+    </button>
+  </div>
+
+  <ul class="flex gap-4 flex-col items-center justify-center mt-5">
+    @for(todo of todoList; track $index; let i = $index) {
+    <div class="flex gap-4 items-center justify-between">
+      <input type="checkbox" name="checkbox" (change)="handleComplete(i)" />
+      @if(todo.completed) {
+      <li class="line-through">{{ todo.task }}</li>
+      } @else {
+      <li>{{ todo.task }}</li>
+      }
+
+      <button class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg">
+        Delete
+      </button>
+    </div>
+    }
+  </ul>
+</section>

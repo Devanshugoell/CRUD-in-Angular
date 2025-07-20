@@ -1,13 +1,37 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
+export interface TodoList {
+  id: number;
+  task: string;
+  completed: boolean;
+}
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [FormsModule],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.css",
 })
 export class AppComponent {
-  title = 'my-angular18-app';
+  todoList: TodoList[] = [];
+
+  newTask: string = "";
+
+  addTask(event: Event): void {
+    if (this.newTask.trim() !== "") {
+      const newTodoItem: TodoList = {
+        id: Date.now(),
+        task: this.newTask,
+        completed: false,
+      };
+
+      this.todoList.push(newTodoItem);
+      this.newTask = "";
+    }
+  }
+
+  handleComplete(index: number): void {
+    this.todoList[index].completed = !this.todoList[index].completed;
+  }
 }
