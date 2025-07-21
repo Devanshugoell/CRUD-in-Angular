@@ -8,12 +8,13 @@
 
     @if(editingIndex !== null) {
     <button
+      pButton
+      label="Update Task"
       class="bg-green-500 p-2 m-2 rounded-md text-white shadow-lg"
       (click)="saveEdit(editingIndex)"
-    >
-      Update Task
-    </button>
+    ></button>
     <button
+      pButton
       class="bg-gray-500 p-2 m-2 rounded-md text-white shadow-lg"
       (click)="cancelEdit()"
     >
@@ -21,11 +22,11 @@
     </button>
     } @else {
     <button
+      pButton
+      label="Add Task"
       class="bg-green-500 p-2 m-2 rounded-md text-white shadow-lg"
       (click)="addTask($event)"
-    >
-      Add Task
-    </button>
+    ></button>
     }
   </div>
 
@@ -48,18 +49,17 @@
 
       <div>
         <button
+          pButton
+          label="Edit"
           class="p-2 m-2 bg-blue-500 rounded-lg text-white shadow-lg px-6"
           (click)="handleEdit(i)"
-        >
-          Edit
-        </button>
-
+        ></button>
         <button
+          pButton
+          label="Delete"
           class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg px-6"
           (click)="handleDelete(i)"
-        >
-          Delete
-        </button>
+        ></button>
       </div>
     </div>
     }

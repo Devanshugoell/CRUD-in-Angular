@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
 
 export interface TodoList {
   id: number;
@@ -11,7 +12,7 @@ export interface TodoList {
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ButtonModule],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
