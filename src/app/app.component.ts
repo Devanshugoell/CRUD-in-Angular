@@ -57,6 +57,6 @@ export class AppComponent {
   }
 
   handleDelete(index: number): void {
-    this.todoList = this.todoList.filter((_, i) => i !== index);
+    this.todoList.splice(index, 1);
   }
 }
