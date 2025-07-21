@@ -39,25 +39,28 @@
         name="checkbox"
         (change)="handleComplete(i)"
         [checked]="todo.completed"
+        class="w-6 h-6 cursor-pointer"
       />
 
       <li [class.line-through]="todo.completed" class="text-white text-3xl">
         {{ todo.task | titlecase }}
       </li>
 
-      <button
-        class="p-2 m-2 bg-blue-500 rounded-lg text-white shadow-lg px-6"
-        (click)="handleEdit(i)"
-      >
-        Edit
-      </button>
+      <div>
+        <button
+          class="p-2 m-2 bg-blue-500 rounded-lg text-white shadow-lg px-6"
+          (click)="handleEdit(i)"
+        >
+          Edit
+        </button>
 
-      <button
-        class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg px-6"
-        (click)="handleDelete(i)"
-      >
-        Delete
-      </button>
+        <button
+          class="p-2 m-2 bg-red-500 rounded-lg text-white shadow-lg px-6"
+          (click)="handleDelete(i)"
+        >
+          Delete
+        </button>
+      </div>
     </div>
     }
   </ul>
